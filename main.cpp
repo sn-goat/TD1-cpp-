@@ -9,7 +9,7 @@
 
 int main()
 {
-    // Question 1:
+    // Question 2:
     static const int PRECISION = 5;
 
     limitOFSequence(PRECISION);
