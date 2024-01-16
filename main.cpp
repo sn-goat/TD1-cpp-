@@ -1,15 +1,19 @@
 #include "Q2_suite_reel.cpp"
+#include "Q4_multiplication_russe.cpp"
+static const int PRECISION = 5;
 
 
+
+void q2(int precision){
+    limitOfSequence(PRECISION);
+
+
+}
 
 
 int main()
 {
-    // Question 2:
-    static const int PRECISION = 5;
-
-    limitOfSequence(PRECISION);
-
+    q2(PRECISION);
 
 
 
