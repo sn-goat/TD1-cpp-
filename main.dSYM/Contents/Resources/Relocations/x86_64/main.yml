@@ -19,7 +19,7 @@ relocations:
   - { offsetInCU: 0x7939, offset: 0x7939, size: 0x8, addend: 0x0, symName: __Z13numInSequencei, symObjAddr: 0x0, symBinAddr: 0x100002EB0, symSize: 0x60 }
   - { offsetInCU: 0x7965, offset: 0x7965, size: 0x8, addend: 0x0, symName: __Z4sqrtB7v160006IiENSt3__19enable_ifIXsr3std11is_integralIT_EE5valueEdE4typeES2_, symObjAddr: 0x60, symBinAddr: 0x100002F10, symSize: 0x20 }
   - { offsetInCU: 0x799C, offset: 0x799C, size: 0x8, addend: 0x0, symName: __Z18errorLimitSequencedd, symObjAddr: 0x80, symBinAddr: 0x100002F30, symSize: 0x20 }
-  - { offsetInCU: 0x79D6, offset: 0x79D6, size: 0x8, addend: 0x0, symName: __Z15limitOFSequencei, symObjAddr: 0xA0, symBinAddr: 0x100002F50, symSize: 0x190 }
+  - { offsetInCU: 0x79D6, offset: 0x79D6, size: 0x8, addend: 0x0, symName: __Z15limitOfSequencei, symObjAddr: 0xA0, symBinAddr: 0x100002F50, symSize: 0x190 }
   - { offsetInCU: 0x7A44, offset: 0x7A44, size: 0x8, addend: 0x0, symName: __ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsB7v160006EPFRNS_8ios_baseES5_E, symObjAddr: 0x270, symBinAddr: 0x100003120, symSize: 0x30 }
   - { offsetInCU: 0x7A76, offset: 0x7A76, size: 0x8, addend: 0x0, symName: __ZNSt3__18ios_base4setfB7v160006Ejj, symObjAddr: 0x3C0, symBinAddr: 0x100003270, symSize: 0x50 }
   - { offsetInCU: 0x7AC9, offset: 0x7AC9, size: 0x8, addend: 0x0, symName: __ZNSt3__18ios_base6unsetfB7v160006Ej, symObjAddr: 0x410, symBinAddr: 0x1000032C0, symSize: 0x20 }

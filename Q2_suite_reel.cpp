@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iomanip>
 using namespace std;
 
 
@@ -17,7 +17,7 @@ double numInSequence(int index){
 double errorLimitSequence(double numBefore, double numAfter){
     return numAfter - numBefore;
 }
-void limitOFSequence(int precision){
+void limitOfSequence(int precision){
     int index = 0;
     while(true){
         cout << fixed << setprecision(precision);
