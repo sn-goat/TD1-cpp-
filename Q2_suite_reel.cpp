@@ -1,7 +1,6 @@
 #include <iomanip>
 using namespace std;
 
-
 void limitOfSequence(int precision);
 double numInSequence(double index);
 double errorLimitSequence(double limitNum, int Numsequence);
