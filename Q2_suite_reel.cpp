@@ -1,9 +1,10 @@
 #include <iomanip>
+#include <iostream>
 using namespace std;
 
 void limitOfSequence(int precision);
-double numInSequence(double index);
-double errorLimitSequence(double limitNum, int Numsequence);
+double numInSequence(int index);
+double errorLimitSequence(double numBefore, double numAfter);
 
 double numInSequence(int index){
 
