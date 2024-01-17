@@ -1,6 +1,7 @@
 #include <iomanip>
 #include <iostream>
 using namespace std;
+const int PRECISION = 5;
 
 void limitOfSequence(int precision);
 double numInSequence(int index);
@@ -26,8 +27,9 @@ void limitOfSequence(int precision){
         double numAfter = numInSequence(index + 1);
         cout << numAfter << " index = " << index + 1 << '\n';
         double error = errorLimitSequence(numBefore, numAfter);
-        cout << "Error: " << numAfter << " - " << numBefore << " = " << error <<'\n';
+        cout << "Error: " << numAfter << " - " << numBefore << " = " << error << '\n';
         if(error  < pow(10,-precision)){
+            cout << "The limit of the sequence is " << numBefore << '\n';
             break;
         }
         else{
@@ -36,3 +38,4 @@ void limitOfSequence(int precision){
 
     }
 }
+//
