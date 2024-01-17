@@ -3,7 +3,7 @@
 
 
 void q2(int precision){
-    limitOfSequence(PRECISION);
+    limitOfSequence(precision);
 
 
 }
