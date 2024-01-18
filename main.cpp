@@ -3,7 +3,7 @@
 
 
 void q2(int precision){
-    limitOfSequence(precision);
+    showLimitOfSequence(precision);
 
 
 }
@@ -11,7 +11,12 @@ void q2(int precision){
 
 int main()
 {
-    russianMultiplication(FIRST_MULTIPLIER,SECOND_MULTIPLIER);
+    const int PRECISION = 5;
+    const int FIRST_MULTIPLIER = 37;
+    const int SECOND_MULTIPLIER = 129;
+
+
+    applyRussianMultiplication(FIRST_MULTIPLIER,SECOND_MULTIPLIER);
     q2(PRECISION);
 
 

@@ -1,33 +1,26 @@
 #include <istream>
 
-const int FIRST_MULTIPLIER = 37;
-const int SECOND_MULTIPLIER = 129;
 const int NUMBER_OF_COLUMN = 2;
 
-void russianMultiplication(int firstNum, int secondNum);
-int nbOfRow(int firstNum);
-void creatTable(int table[]);
-void showTable(int table[]);
-void removeValueNearEvenValue(int table[]);
-void addingValueNearOddValue(int table[]);
+int computeNumberOfRow(int firstNum);
+void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int nRow);
+void showTable(int table[][NUMBER_OF_COLUMN], int nRow);
+void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow);
+int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow);
+void applyRussianMultiplication(int firstNum, int secondNum);
 
 
-int nbOfRow(int firstNum){
-    int size = 1;
+int computeNumberOfRow(int firstNum){
+    int nRow = 1;
     do{
         firstNum /= 2;
-        size++;
+        nRow++;
     }while(firstNum > 1);
-    return size;
+    return nRow;
 }
- const int NUMBER_OF_ROW = nbOfRow(FIRST_MULTIPLIER);
 
-void russianMultiplication(int firstNum, int secondNum){
-    int table[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
-    table[0][0] = firstNum;
-    table[0][1] = secondNum;
-//    Put this in a function:
-    for(int i = 1; i < (NUMBER_OF_ROW); i++){
+void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int nRow){
+    for(int i = 1; i < nRow; i++){
         for(int j = 0; j < NUMBER_OF_COLUMN; j++){
             if(j == 0){
                 firstNum /= 2;
@@ -39,18 +32,57 @@ void russianMultiplication(int firstNum, int secondNum){
             }
         }
     }
-//  function that replace value near even numbers with NOT INCLUDED
-//  function that add value near odd numbers
-//  function that show that the two results are equals
-//  Put this in a function:
-    cout<<"Table is: " << '\n';
-    for(int i=0 ; i< NUMBER_OF_ROW; i++) {
+}
+
+void showTable(int table[][NUMBER_OF_COLUMN], int nRow){
+    cout << "The table: " << '\n';
+    for(int i=0 ; i< nRow ; i++) {
         for (int j = 0; j < NUMBER_OF_COLUMN; j++) {
             cout << table[i][j] << '\t';
-            if (j == 1) {
+            bool isAtEndOfTable = j == 1;
+            if (isAtEndOfTable) {
                 cout << '\n';
             }
+
         }
     }
+    cout << "__________" << '\n';
+
+}
+void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow){
+    for(int i=0 ; i< nRow ; i++) {
+        int replacement = table[i][0];
+        bool isEven = replacement % 2;
+        if(!isEven){
+            table[i][1] = 0;
+        }
+    }
+
+}
+int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow) {
+    int totalAddition = 0;
+    for (int i = 0; i < nRow; i++) {
+        totalAddition += table[i][1];
+    }
+    return totalAddition;
+}
+
+
+void applyRussianMultiplication(int firstNum, int secondNum){
+    const int NUMBER_OF_ROW = computeNumberOfRow(firstNum);
+    cout << "_____RUSSIAN MULTIPLICATION_____" << '\n';
+    int table[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
+    table[0][0] = firstNum;
+    table[0][1] = secondNum;
+
+    createTable(table, firstNum, secondNum, NUMBER_OF_ROW);
+    showTable(table, NUMBER_OF_ROW);
+    removeValueNearEvenValue(table, NUMBER_OF_ROW);
+    showTable(table, NUMBER_OF_ROW);
+
+    int sumOfSecondColumn = addingValueNearOddValue(table, NUMBER_OF_ROW);
+    cout << "The sum of the second colum = " << sumOfSecondColumn << '\n';
+    cout << firstNum << " x " << secondNum << " = " << firstNum * secondNum << '\n';
+    cout << "_______________________________" << '\n';
 
 }
