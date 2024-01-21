@@ -147,5 +147,5 @@ void executeRussianMultiplicationTest(){
         }
     }
     cout << "Ran " << size(structListOfTest) << " test" << '\n';
-    cout << successfullTest << "/5" << " passed." << '\n';
+    cout << successfullTest << "/"<< size(structListOfTest) << " passed." << '\n';
 }
