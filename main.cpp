@@ -3,11 +3,19 @@
 
 
 void q2(int precision){
+    cout << "****************************Q2****************************" << '\n';
     showLimitOfSequence(precision);
+    cout << "**********************************************************" << '\n';
 
 
 }
+void q4(int firstNumber, int secondNumber){
+    cout << "****************************Q4****************************" << '\n';
+    applyRussianMultiplication(firstNumber,secondNumber);
+    executeRussianMultiplicationTest();
+    cout << "**********************************************************" << '\n';
 
+}
 
 int main()
 {
@@ -16,8 +24,8 @@ int main()
     const int SECOND_MULTIPLIER = 129;
 
 
-    applyRussianMultiplication(FIRST_MULTIPLIER,SECOND_MULTIPLIER);
     q2(PRECISION);
+    q4(FIRST_MULTIPLIER,SECOND_MULTIPLIER);
 
 
 
