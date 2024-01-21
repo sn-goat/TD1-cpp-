@@ -82,6 +82,7 @@ void changeSign(int firstNum, int secondNum, int* number){
     const bool isPositiveAnswer = ((firstNum >= 0) && (secondNum >= 0)) || ((firstNum <= 0) && (secondNum <= 0));
     const bool isNegativeNumber = *number < 0;
     const bool isChangingSign = (isPositiveAnswer && isNegativeNumber) || (!isPositiveAnswer && !isNegativeNumber);
+
     if(isChangingSign){
         *number *= -1;
     }
@@ -145,6 +146,6 @@ void executeRussianMultiplicationTest(){
             successfullTest++;
         }
     }
-    cout << "Ran 5 test" << '\n';
+    cout << "Ran " << size(structListOfTest) << " test" << '\n';
     cout << successfullTest << "/5" << " passed." << '\n';
 }
