@@ -141,8 +141,8 @@ void executeRussianMultiplicationTest(){
 
     int successfullTest = 0;
     for(const auto& test : structListOfTest){
-        bool isTestSuccessfull = verifyRussianMultiplication(test.firstNumber, test.secondNumber);
-        if (isTestSuccessfull){
+        bool isSuccessfullTest = verifyRussianMultiplication(test.firstNumber, test.secondNumber);
+        if (isSuccessfullTest){
             successfullTest++;
         }
     }
