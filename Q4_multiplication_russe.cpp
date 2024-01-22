@@ -14,20 +14,21 @@ void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int
 void showTable(int table[][NUMBER_OF_COLUMN], int nRow);
 void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow);
 int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow);
-void changeSign(int firstNum, int secondNum, int* number);
+void changeSign(int firstNum, int secondNum, int& number);
 void applyRussianMultiplication(int firstNum, int secondNum);
 bool verifyRussianMultiplication(int firstNum, int secondNum);
+void createTableOfTest(RussianMultiplicationTest table[]);
 void executeRussianMultiplicationTest();
 
 
 int computeNumberOfRow(int firstNum){
     int positiveNumber = abs(firstNum);
-    int nRow = 1;
+    int nRows = 1;
     do{
         positiveNumber /= 2;
-        nRow++;
+        nRows++;
     }while(positiveNumber > 1);
-    return nRow;
+    return nRows;
 }
 
 void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int nRow){
@@ -72,19 +73,19 @@ void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow){
 
 }
 int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow) {
-    int totalAddition = 0;
+    int totalSum = 0;
     for (int i = 0; i < nRow; i++) {
-        totalAddition += table[i][1];
+        totalSum += table[i][1];
     }
-    return totalAddition;
+    return totalSum;
 }
-void changeSign(int firstNum, int secondNum, int* number){
+void changeSign(int firstNum, int secondNum, int& number){
     const bool isPositiveAnswer = ((firstNum >= 0) && (secondNum >= 0)) || ((firstNum <= 0) && (secondNum <= 0));
-    const bool isNegativeNumber = *number < 0;
+    const bool isNegativeNumber = number < 0;
     const bool isChangingSign = (isPositiveAnswer && isNegativeNumber) || (!isPositiveAnswer && !isNegativeNumber);
 
     if(isChangingSign){
-        *number *= -1;
+        number *= -1;
     }
 }
 void applyRussianMultiplication(int firstNum, int secondNum){
@@ -100,7 +101,7 @@ void applyRussianMultiplication(int firstNum, int secondNum){
     showTable(table, NUMBER_OF_ROW);
 
     int sumOfSecondColumn = addingValueNearOddValue(table, NUMBER_OF_ROW);
-    changeSign(firstNum, secondNum, &sumOfSecondColumn);
+    changeSign(firstNum, secondNum, sumOfSecondColumn);
 
 
 
@@ -120,32 +121,33 @@ bool verifyRussianMultiplication(int firstNum, int secondNum){
     removeValueNearEvenValue(table, NUMBER_OF_ROW);
 
     int sumOfSecondColumn = addingValueNearOddValue(table, NUMBER_OF_ROW);
-    changeSign(firstNum, secondNum, &sumOfSecondColumn);
+    changeSign(firstNum, secondNum, sumOfSecondColumn);
     bool asserEqual = sumOfSecondColumn == (firstNum * secondNum);
 
     return asserEqual;
 }
 
+void createTableOfTest(RussianMultiplicationTest table[]){
+    table[0] = {0, 0};
+    table[1] = {37, 129};
+    table[2] = {103, -207};
+    table[3] = {-47, 300};
+    table[4] = {-86, -444};
+}
+
 void executeRussianMultiplicationTest(){
-    vector<RussianMultiplicationTest> structListOfTest;
+    const int NUMBER_OF_TEST = 5;
 
-    RussianMultiplicationTest test1 = {0, 0};
-    RussianMultiplicationTest test2 = {37, 129};
-    RussianMultiplicationTest test3 = {103, -207};
-    RussianMultiplicationTest test4 = {-47, 300};
-    RussianMultiplicationTest test5 = {-86, -444};
+    RussianMultiplicationTest tableOfTest[NUMBER_OF_TEST];
+    createTableOfTest(tableOfTest);
 
-    structListOfTest.push_back(test1);structListOfTest.push_back(test2);
-    structListOfTest.push_back(test3);structListOfTest.push_back(test4);
-    structListOfTest.push_back(test5);
-
-    int successfullTest = 0;
-    for(const auto& test : structListOfTest){
+    int nSuccessfullTests = 0;
+    for(const auto& test : tableOfTest){
         bool isSuccessfullTest = verifyRussianMultiplication(test.firstNumber, test.secondNumber);
         if (isSuccessfullTest){
-            successfullTest++;
+            nSuccessfullTests++;
         }
     }
-    cout << "Ran " << size(structListOfTest) << " test" << '\n';
-    cout << successfullTest << "/"<< size(structListOfTest) << " passed." << '\n';
+    cout << "Ran " << NUMBER_OF_TEST << " test" << '\n';
+    cout << nSuccessfullTests << "/"<< NUMBER_OF_TEST << " passed." << '\n';
 }
