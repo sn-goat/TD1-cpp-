@@ -2,6 +2,7 @@
 #include "Q4_multiplication_russe.cpp"
 #include "Q6_tic_tac_toe.cpp"
 #include <filesystem>
+#include <utility>
 namespace fs = filesystem;
 
 
@@ -20,23 +21,25 @@ void q4(int firstNumber, int secondNumber){
     cout << "**********************************************************" << '\n';
 
 }
+void q6(string file){
+    cout << "****************************Q6****************************" << '\n';
+    outcomeOfTicTacToeGame(std::move(file));
+    cout << "**********************************************************" << '\n';
+}
 
 int main()
 {
     const int PRECISION = 5;
     const int FIRST_MULTIPLIER = 37;
     const int SECOND_MULTIPLIER = 129;
-
-    filesystem::path currentPath = filesystem::current_path();
-    const string GRID_FILE_ONE = string(currentPath) + "/INF1015-TD1-H24-Fichiers/grille1.txt";
-
-    determineWinner(GRID_FILE_ONE);
+    fs::path currentPath = fs::current_path();
+    const string GRID_FILE = string(currentPath) + "/INF1015-TD1-H24-Fichiers/";
 
 
 
-
-//    q2(PRECISION);
-//    q4(FIRST_MULTIPLIER,SECOND_MULTIPLIER);
+    q2(PRECISION);
+    q4(FIRST_MULTIPLIER,SECOND_MULTIPLIER);
+    q6(GRID_FILE);
 
 
 
