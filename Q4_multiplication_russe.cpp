@@ -1,29 +1,26 @@
-#include <iomanip>
-#include <iostream>
-#include <vector>
-
 struct RussianMultiplicationTest{
     int firstNumber;
     int secondNumber;
 };
 
-const int NUMBER_OF_COLUMN = 2;
+const int NUMBER_OF_COLUMNS = 2;
 
-int computeNumberOfRow(int firstNum);
-void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int nRow);
-void showTable(int table[][NUMBER_OF_COLUMN], int nRow);
-void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow);
-int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow);
+int computeNumberOfRows(int firstNum);
+void createRussianMultiplicationTable(int table[][NUMBER_OF_COLUMNS], int firstNum, int secondNum, int nRow);
+void showTable(int table[][NUMBER_OF_COLUMNS], int nRow);
+void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMNS], int nRow);
+int  sumOfSecondRow(int table[][NUMBER_OF_COLUMNS], int nRow);
 void changeSign(int firstNum, int secondNum, int& number);
 void applyRussianMultiplication(int firstNum, int secondNum);
 bool verifyRussianMultiplication(int firstNum, int secondNum);
-void createTableOfTest(RussianMultiplicationTest table[]);
-void executeRussianMultiplicationTest();
+void createRussianMultiplicationTableOfTests(RussianMultiplicationTest table[]);
+void executeRussianMultiplicationTests();
 
 
-int computeNumberOfRow(int firstNum){
+int computeNumberOfRows(int firstNum){
     int positiveNumber = abs(firstNum);
     int nRows = 1;
+
     do{
         positiveNumber /= 2;
         nRows++;
@@ -31,9 +28,9 @@ int computeNumberOfRow(int firstNum){
     return nRows;
 }
 
-void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int nRow){
+void createRussianMultiplicationTable(int table[][NUMBER_OF_COLUMNS], int firstNum, int secondNum, int nRow){
     for(int i = 1; i < nRow; i++){
-        for(int j = 0; j < NUMBER_OF_COLUMN; j++){
+        for(int j = 0; j < NUMBER_OF_COLUMNS; j++){
             bool isInFirstColumn = j == 0;
             bool isInSecondColumn = j == 1;
             if(isInFirstColumn){
@@ -48,10 +45,10 @@ void createTable(int table[][NUMBER_OF_COLUMN], int firstNum, int secondNum, int
     }
 }
 
-void showTable(int table[][NUMBER_OF_COLUMN], int nRow){
+void showTable(int table[][NUMBER_OF_COLUMNS], int nRow){
     cout << "The table: " << '\n';
     for(int i=0 ; i< nRow ; i++) {
-        for (int j = 0; j < NUMBER_OF_COLUMN; j++) {
+        for (int j = 0; j < NUMBER_OF_COLUMNS; j++) {
             cout << table[i][j] << '\t';
             bool isAtEndOfTable = j == 1;
             if (isAtEndOfTable) {
@@ -62,7 +59,7 @@ void showTable(int table[][NUMBER_OF_COLUMN], int nRow){
     }
     cout << "__________" << '\n';
 }
-void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow){
+void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMNS], int nRow){
     for(int i=0 ; i< nRow ; i++) {
         int replacement = abs(table[i][0]);
         bool isEven = replacement % 2;
@@ -72,7 +69,7 @@ void removeValueNearEvenValue(int table[][NUMBER_OF_COLUMN], int nRow){
     }
 
 }
-int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow) {
+int  sumOfSecondRow(int table[][NUMBER_OF_COLUMNS], int nRow) {
     int totalSum = 0;
     for (int i = 0; i < nRow; i++) {
         totalSum += table[i][1];
@@ -80,27 +77,27 @@ int  addingValueNearOddValue(int table[][NUMBER_OF_COLUMN], int nRow) {
     return totalSum;
 }
 void changeSign(int firstNum, int secondNum, int& number){
-    const bool isPositiveAnswer = ((firstNum >= 0) && (secondNum >= 0)) || ((firstNum <= 0) && (secondNum <= 0));
-    const bool isNegativeNumber = number < 0;
-    const bool isChangingSign = (isPositiveAnswer && isNegativeNumber) || (!isPositiveAnswer && !isNegativeNumber);
+    bool isPositiveAnswer = ((firstNum >= 0) && (secondNum >= 0)) || ((firstNum <= 0) && (secondNum <= 0));
+    bool isNegativeNumber = number < 0;
+    bool isChangingSign = (isPositiveAnswer && isNegativeNumber) || (!isPositiveAnswer && !isNegativeNumber);
 
     if(isChangingSign){
         number *= -1;
     }
 }
 void applyRussianMultiplication(int firstNum, int secondNum){
-    const int NUMBER_OF_ROW = computeNumberOfRow(firstNum);
+    int numberOfRows = computeNumberOfRows(firstNum);
     cout << "_____RUSSIAN MULTIPLICATION_____" << '\n';
-    int table[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
+    int table[numberOfRows][NUMBER_OF_COLUMNS];
     table[0][0] = firstNum;
     table[0][1] = secondNum;
 
-    createTable(table, firstNum, secondNum, NUMBER_OF_ROW);
-    showTable(table, NUMBER_OF_ROW);
-    removeValueNearEvenValue(table, NUMBER_OF_ROW);
-    showTable(table, NUMBER_OF_ROW);
+    createRussianMultiplicationTable(table, firstNum, secondNum, numberOfRows);
+    showTable(table, numberOfRows);
+    removeValueNearEvenValue(table, numberOfRows);
+    showTable(table, numberOfRows);
 
-    int sumOfSecondColumn = addingValueNearOddValue(table, NUMBER_OF_ROW);
+    int sumOfSecondColumn = sumOfSecondRow(table, numberOfRows);
     changeSign(firstNum, secondNum, sumOfSecondColumn);
 
 
@@ -112,22 +109,23 @@ void applyRussianMultiplication(int firstNum, int secondNum){
 }
 
 bool verifyRussianMultiplication(int firstNum, int secondNum){
-    const int NUMBER_OF_ROW = computeNumberOfRow(firstNum);
-    int table[NUMBER_OF_ROW][NUMBER_OF_COLUMN];
-    table[0][0] = firstNum;
-    table[0][1] = secondNum;
+    int numberOfRows = computeNumberOfRows(firstNum);
+    int russianMultiplicationNumbers[numberOfRows][NUMBER_OF_COLUMNS];
 
-    createTable(table, firstNum, secondNum, NUMBER_OF_ROW);
-    removeValueNearEvenValue(table, NUMBER_OF_ROW);
+    russianMultiplicationNumbers[0][0] = firstNum;
+    russianMultiplicationNumbers[0][1] = secondNum;
 
-    int sumOfSecondColumn = addingValueNearOddValue(table, NUMBER_OF_ROW);
+    createRussianMultiplicationTable(russianMultiplicationNumbers, firstNum, secondNum, numberOfRows);
+    removeValueNearEvenValue(russianMultiplicationNumbers, numberOfRows);
+
+    int sumOfSecondColumn = sumOfSecondRow(russianMultiplicationNumbers, numberOfRows);
     changeSign(firstNum, secondNum, sumOfSecondColumn);
     bool asserEqual = sumOfSecondColumn == (firstNum * secondNum);
 
     return asserEqual;
 }
 
-void createTableOfTest(RussianMultiplicationTest table[]){
+void createRussianMultiplicationTableOfTests(RussianMultiplicationTest table[]){
     table[0] = {0, 0};
     table[1] = {37, 129};
     table[2] = {103, -207};
@@ -135,11 +133,11 @@ void createTableOfTest(RussianMultiplicationTest table[]){
     table[4] = {-86, -444};
 }
 
-void executeRussianMultiplicationTest(){
-    const int NUMBER_OF_TEST = 5;
+void executeRussianMultiplicationTests(){
+    const int NUMBER_OF_TESTS = 5;
 
-    RussianMultiplicationTest tableOfTest[NUMBER_OF_TEST];
-    createTableOfTest(tableOfTest);
+    RussianMultiplicationTest tableOfTest[NUMBER_OF_TESTS];
+    createRussianMultiplicationTableOfTests(tableOfTest);
 
     int nSuccessfullTests = 0;
     for(const auto& test : tableOfTest){
@@ -148,6 +146,6 @@ void executeRussianMultiplicationTest(){
             nSuccessfullTests++;
         }
     }
-    cout << "Ran " << NUMBER_OF_TEST << " test" << '\n';
-    cout << nSuccessfullTests << "/"<< NUMBER_OF_TEST << " passed." << '\n';
+    cout << "Ran " << NUMBER_OF_TESTS << " test" << '\n';
+    cout << nSuccessfullTests << "/" << NUMBER_OF_TESTS << " passed." << '\n';
 }
