@@ -1,10 +1,4 @@
-#include <iomanip>
-#include <iostream>
-using namespace std;
-
-void showLimitOfSequence(int precision);
-double computeNumberInSequence(int index);
-double computeError(double numberBefore, double numberAfter);
+#include "Q2_suite_reel.h"
 
 double computeNumberInSequence(int index){
 

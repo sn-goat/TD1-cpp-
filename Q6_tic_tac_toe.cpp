@@ -1,9 +1,4 @@
-#include <fstream>
-
-
-void makeTableOfTicTacToeGame(char table[], const string& fileName);
-void findWinningPLayer(const char table[], char player1);
-void outcomeOfTicTacToeGame(string fileName);
+#include "Q6_tic_tac_toe.h"
 
 void makeTableOfTicTacToeGame(char table[],const string& fileName){
     int nSize = 0;

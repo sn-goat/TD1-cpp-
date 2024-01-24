@@ -1,11 +1,9 @@
-#include "Q2_suite_reel.cpp"
-#include "Q4_multiplication_russe.cpp"
-#include "Q6_tic_tac_toe.cpp"
+#include "Q2_suite_reel.h"
+#include "Q4_multiplication_russe.h"
+#include "Q6_tic_tac_toe.h"
 #include <filesystem>
 
 namespace fs = filesystem;
-
-
 
 void q2(int precision){
     cout << "****************************Q2****************************" << '\n';
