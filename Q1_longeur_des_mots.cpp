@@ -9,7 +9,6 @@ void lengthOfWords() {
     cout << "Saisissez une phrase : ";
     getline(cin, phrase);
     cout << "Votre phrase est: " << phrase << endl;
-    int taille_phrase = phrase.size();
     istringstream iss(phrase);
 
     double nombreMot = 0;
